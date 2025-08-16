@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Joys Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff0f5; /* light pink background */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(to right, #f8cdda,rgb(212, 117, 133));
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        input[type="radio"] {
+            width: auto;
+            margin-right: 6px;
+        }
+        button {
+            margin-top: 15px;
+            background:rgb(209, 118, 133);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background: rgb(196, 123, 135);
+        }
+        p strong {
+            color: rgb(192, 109, 123);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Checkout
+</header>
+
+<form method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Address:</label>
+    <textarea name="address" rows="3" required></textarea>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" required>
+
+    <label>Payment Method</label>
+    <input type="radio" name="payment_method" value="credit/debit card" required> Credit/Debit Card<br>
+    <input type="radio" name="payment_method" value="UPI" required> UPI<br>
+    <input type="radio" name="payment_method" value="Cash on Delivery" required> Cash on Delivery<br>
+
+    
+    <p><strong>Total:</strong> ₹{{ total }}</p>
+
+
+    <button type="submit">Place Order</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Product List - Joys Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffe4ec, #ffb6c1); /* Soft pink gradient */
+            margin: 0;
+            padding: 0;
+            color: #6b3f4a;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #ff9dbd, #ff80a1); /* Glossy pink */
+            padding: 15px 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .btn {
+            background: linear-gradient(to bottom, #ff9dbd, #ff80a1); /* Glossy pink button */
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+        }
+        .btn:hover {
+            background: linear-gradient(to bottom, #ff7aa0, #ff4d80);
+            transform: translateY(-2px);
+        }
+
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            background: #ff4d80; /* Darker pink header */
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        tr {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        tr:hover {
+            transform: scale(1.02);
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            background: white;
+            padding: 5px;
+            border-radius: 6px;
+        }
+
+        .delete-btn {
+            background: linear-gradient(to bottom, #ff9dbd, #ff80a1);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            border: none;
+        }
+        .delete-btn:hover {
+            background: linear-gradient(to bottom, #ff7aa0, #ff4d80);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Admin Product List</h1>
+    <a class="btn" href="{{ url_for('admin_add_product') }}">➕ Add Product</a>
+</header>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price (₹)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td><img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}"></td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ "%.2f"|format(product.price) }}</td>
+            <td>
+                <a class="delete-btn" href="{{ url_for('delete_product', product_id=product.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

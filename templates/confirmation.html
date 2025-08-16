@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Joy's Store</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fff0f5; /* Soft pink background */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(90deg, rgb(197, 121, 134), #ffb6c1); /* Joy’s Store gradient */
+            color: white;
+            padding: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .container {
+            background: white;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            text-align: left;
+        }
+        .success-icon {
+            font-size: 60px;
+            color: #28a745;
+            text-align: center;
+        }
+        h2 {
+            color: #28a745;
+            text-align: center;
+            margin-top: 10px;
+        }
+        p {
+            font-size: 1.1em;
+            margin: 8px 0;
+            color: #444;
+        }
+        .btn-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background:rgb(172, 100, 112);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: 0.3s;
+        }
+        .btn-home:hover {
+            background: rgb(203, 112, 128);
+        }
+        footer {
+            margin-top: 30px;
+            color: #191717;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    🎉 Thank You for Your Order at Joy's Store! 🎉
+</header>
+
+<div class="container">
+    <div class="success-icon">✅</div>
+    <h2>Order Confirmed!</h2>
+    <p><strong>Name:</strong> {{ order_info.name }}</p>
+    <p><strong>Email:</strong> {{ order_info.email }}</p>
+    <p><strong>Address:</strong> {{ order_info.address }}</p>
+    <p><strong>Phone:</strong> {{ order_info.phone }}</p>
+    <p><strong>Payment Method:</strong> {{ order_info.payment_method }}</p>
+    <p><strong>Total Paid:</strong> ₹{{ order_info.total }}</p>
+
+    <h3>🛒 Items Ordered:</h3>
+   {% for item in order_info['items'] %}
+    <li>{{ item.name }} - ₹{{ item.price }}</li>
+{% endfor %}
+
+
+    <a href="{{ url_for('index') }}" class="btn-home">🏠 Back to Home</a>
+</div>
+
+<footer>
+    © 2025 Joy's Store • Thank you for shopping with us ❤
+</footer>
+
+</body>
+</html>

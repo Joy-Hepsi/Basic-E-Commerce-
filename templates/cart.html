@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Joys Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffe6f0, #ffb3d9); /* soft pink gradient */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #ffb6c1, #ff69b4); /* matching soft pink header */
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        th {
+            background: #ffe6f0;
+            color: #333;
+        }
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .total {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px;
+            background: white;
+            width: 80%;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
+        }
+        .btn {
+            background: #ff80aa;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #ff6699;
+        }
+        p {
+            background: white;
+            padding: 20px;
+            width: fit-content;
+            margin: 40px auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Your Shopping Cart</h1>
+</header>
+
+{% if cart_items %}
+<table>
+    <tr>
+        <th>Image</th>
+        <th>Product</th>
+        <th>Price (₹)</th>
+        <th>Action</th>
+    </tr>
+    {% for item in cart_items %}
+    <tr>
+        <td><img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}"></td>
+        <td>{{ item.name }}</td>
+        <td>₹{{ item.price }}</td>
+        <td><a href="{{ url_for('remove_from_cart', product_id=item.id) }}" class="btn">Remove</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="total">
+    Total: ₹{{ total }}
+</div>
+
+<div style="text-align:center; margin-bottom:20px;">
+    <a href="{{ url_for('checkout') }}" class="btn">Proceed to Checkout</a>
+</div>
+
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+
+</body>
+</html>

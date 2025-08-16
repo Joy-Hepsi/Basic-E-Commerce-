@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Joys Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffe4ec, #ffb6c1); /* soft pink gradient */
+            text-align: center;
+            color: #6b3f4a; /* warm brownish-pink text */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 100px 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #a05266; /* deep rose */
+        }
+        p {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        .approval {
+            font-size: 1.1rem;
+            background: rgba(255, 192, 203, 0.3); /* soft pink transparent */
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(to bottom, #ff9dbd, #ff80a1); /* glossy pink gradient */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        a:hover {
+            background: linear-gradient(to bottom, #ff7aa0, #ff4d80); /* darker glossy pink */
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Joys Store</h1>
+        <p class="approval">✅ Approved & Trusted by Hundreds of Happy Customers</p>
+        <p>Your one-stop shop for quality products at unbeatable prices. At Joys Store, our mission is to make shopping easy, enjoyable, and affordable for everyone.</p>
+        <a href="{{ url_for('products') }}">Browse Products</a>
+    </div>
+</body>
+</html>
